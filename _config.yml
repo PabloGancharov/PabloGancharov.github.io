@@ -1,7 +1,7 @@
 # Site settings
 title: PHP development notes
 email: pablogancharov@gmail.com
-description: "Blog about programming, experiments, and aoutdoors life."
+description: "Blog about programming, experiments, and life."
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "pablogancharov.github.io" # the base hostname & protocol for your site
 twitter_username: PabloGancharov
