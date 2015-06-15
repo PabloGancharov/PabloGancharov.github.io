@@ -132,5 +132,11 @@ These are some images of the Zend Server in Action:
 I hope this guide can help somebody :D
 
 
+Resources:
+
+* [http://www.zend.com/en/products/server][zendserver] 
+* [https://www.vagrantup.com/][vagrant]
+
+
 [zendserver]: http://www.zend.com/en/products/server
 [vagrant]:    https://www.vagrantup.com/
