@@ -9,3 +9,4 @@ github_username:  pablogancharov
 
 # Build settings
 markdown: kramdown
+excerpt_separator: <!--more-->
