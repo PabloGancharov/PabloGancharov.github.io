@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+  </head>
+  <body>
+  <img src="remote.jpg" alt="" usemap="#Map" />
+	<map name="Map" id="Map">
+    <area alt="" title="btn1" href="javascript:httpGet('NEC,0x40BF659A,32,10')" shape="poly" coords="247,254,246,288,319,292,324,258" />
+    <area alt="" title="btn2" href="javascript:httpGet('NEC,0x40BF7D82,32,10')" shape="poly" coords="351,334,351,405,377,420,403,336" />
+    <area alt="" title="btn3" href="javascript:httpGet('NEC,0x40BF758A,32,10')" shape="poly" coords="177,334,220,337,220,399,180,402" />
+    <area alt="" title="btn4" href="javascript:httpGet('NEC,0x40BF6D92,32,10')" shape="poly" coords="248,433,324,434,318,468,245,472" />
+    <area alt="" title="btn5" href="javascript:httpGet('NEC,0x40BFC738,32,10')" shape="poly" coords="137,464,217,467,211,537,141,539" />
+    <area alt="" title="btn6" href="javascript:httpGet('NEC,0x40BFC53A,32,10')" shape="poly" coords="144,184,213,192,203,255,144,256" />
+    <area alt="" title="btn7" href="javascript:httpGet('NEC,0x40BFDF20,32,10')" shape="poly" coords="360,481,428,485,423,532,361,534" />
+    <area alt="" title="btn8" href="javascript:httpGet('NEC,0x40BF35CA,32,10')" shape="poly" coords="151,611,225,613,216,672,160,674" />
+    <area alt="" title="btn9" href="javascript:httpGet('NEC,0x40BF37C8,32,10')" shape="poly" coords="350,610,423,613,414,673,365,671" />
+    <area alt="" title="btn10" href="javascript:httpGet('NEC,0x40BF36C9,32,10')" shape="poly" coords="253,685,324,688,307,757,249,749" />
+    <area alt="" title="btn11" href="javascript:httpGet('NEC,0x40BF17E8,32,10')" shape="poly" coords="176,76,236,76,229,129,169,129" />
+    <area alt="" title="btn12" href="javascript:httpGet('NEC,0x40BF9F60,32,10')" shape="poly" coords="348,91,397,91,389,124,344,127" />
+    <area alt="" title="btn13" href="javascript:httpGet('NEC,0x40BF5FA0,32,10')" shape="poly" coords="372,201,430,205,419,252,367,251" />
+	</map>
+  </body>
+</html>
+
+<script>
+function httpGet(theCode)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", 'https://api.particle.io/v1/devices/190031001847353236343033/emmit', false );
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.setRequestHeader("Authorization", "Bearer d7c155027961122b5a7ae16065e5dec34befc53e");
+
+
+    xmlHttp.send( "args="+theCode );
+    return false; //xmlHttp.responseText;
+}
+</script>
