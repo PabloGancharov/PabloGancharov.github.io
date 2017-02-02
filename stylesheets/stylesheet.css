@@ -477,9 +477,11 @@ header h2, header h2 a {
   letter-spacing: 0;
 }
 
-header a:hover {
-  color: #9ddcff;
+header a, header a:visited, header a:hover, header a:active {
+  color: inherit;
 }
+
+
 
 .inner {
   position: relative;
