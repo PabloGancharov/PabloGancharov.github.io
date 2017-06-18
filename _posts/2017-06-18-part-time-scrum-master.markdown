@@ -13,7 +13,7 @@ tags:
 
 ## Why having part time Scrum Masters?
 
-Growing teams will reach the limit proposed by Scrum (maximum 9 members of the dev-team) so eventually the team should be spliced. That means that each team will require their own scrum master. 
+Growing teams will reach the limit proposed by Scrum (maximum 9 members of the dev-team) so eventually the team should be splited. That means that each team will require their own scrum master. 
 
 ![Part time scrum master](/files/part-time-scrum-master/scrum team.svg)
 
