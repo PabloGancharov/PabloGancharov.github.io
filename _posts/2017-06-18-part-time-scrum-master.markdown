@@ -15,7 +15,7 @@ tags:
 
 Growing teams will reach the limit proposed by Scrum (maximum 9 members of the dev-team) so eventually the team should be spliced. That means that each team will require their own scrum master. 
 
-![Playing Mario Kart 64](/files/part-time-scrum-master/scrum team.svg)
+![Part time scrum master](/files/part-time-scrum-master/scrum team.svg)
 
 
 One solution can be just hiring a new full-time scrum master, 
