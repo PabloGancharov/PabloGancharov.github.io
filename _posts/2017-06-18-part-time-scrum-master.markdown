@@ -48,7 +48,7 @@ But as a scrum master, your role is much more silent, flying low, remembering to
 
 ## Proposed Solution
 
-If you are in a scrum dev team, but you will start the journey to become a scrum master, one healthy choice could be to start as a ***"Cross team Scrum Master"***. In that way we can separate the roles and be clear of the commitments with each team you are member.
+ If you are in a scrum dev team and you will start the journey to become a scrum master one healthy choice could be to start as a ***"Cross team Scrum Master"***. In that way we can separate the roles and be clear of the commitments with each team you are member.
 
 ### Cross team Scrum Master
 * Pros:
