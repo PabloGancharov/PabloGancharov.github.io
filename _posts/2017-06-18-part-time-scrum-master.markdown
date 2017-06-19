@@ -35,13 +35,13 @@ To master the framework one key concept to understand is the ***"Servant leaders
 
 > Instead of assigning tasks, and checking progress, inspire the team members to take control and embrace the self-organization of the team.
 
-That will require, patience, listening, coaching and practice.
+That will require patience, listening, coaching and practice.
 
-When you discover something that needs improvement, one common mistake is to take shortcuts and "point out what is going wrong". Instead of doing that we should allow the team to use the proper tools to analyze their work and perform the adjustments required.
+When you discover something that needs improvement, one common mistake is to take shortcuts and "point out what is going wrong". Instead of doing that, we should allow the team to use the proper tools to analyze their work and perform the adjustments required.
 
 ## Conflict of interests
 
-Being part of the dev-team and being Scrum Master of the Scrum Team at the same time will result in a huge effort. Mainly because you as a team member should work actively to complete the everyday work, proposing ideas, supporting colleagues, and exposing what is being doing well and what is being doing wrong. 
+Being part of the dev-team and being Scrum Master of the Scrum Team at the same time will result in a huge effort. Mainly because you as a team member should work actively to complete the everyday work, proposing ideas, supporting colleagues and exposing what is being doing well and what is being doing wrong. 
 
 But as a scrum master, your role is much more silent, flying low, remembering to "see the wood instead of the tree", observing possible issues but giving the time to the team to auto solve them.
 
