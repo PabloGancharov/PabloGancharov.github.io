@@ -62,12 +62,15 @@ But as a scrum master, your role is much more silent, flying low, remembering to
     * Less time in general
        * To learn
        * To be a good scrum master
-       * To be a good developer 	
+       * To be a good developer
+       * The Scrum Master lose awareness of how the team is interacting, which makes coaching more difficult
     * Tasks mechanization, as Scrum Master is possible that you will only have time to facilitate the meetings and nothing more :S
 
     
-    
-    
+ ***Final thought:*** This is not a final solution, is just a proposed configuration to mitigate some of the issues created while sharing roles, please fell free to take what you consider useful.
+
+
+
 
 
 
