@@ -30,7 +30,7 @@ Scrum is easy to "understand" but hard to "master":
 
 > Michael James: “A good Scrum Master can have two teams,  a great Scrum Master will only have one team.”
 
-Easy to understand means that the theory is pretty simple, so learning the rules, and apply them is something achievable with some effort. The hard part is to make progress with it.
+Easy to understand means that the theory is pretty simple, so learning the rules and apply them is something achievable with some effort. The hard part is to make progress with it.
 To master the framework one key concept to understand is the ***"Servant leadership"*** that can be summarized as: 
 
 > Instead of assigning tasks, and checking progress, inspire the team members to take control and embrace the self-organization of the team.
