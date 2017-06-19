@@ -67,7 +67,7 @@ But as a scrum master, your role is much more silent, flying low, remembering to
     * Tasks mechanization, as Scrum Master is possible that you will only have time to facilitate the meetings and nothing more :S
 
     
- ***Final thought:*** This is not a final solution, is just a proposed configuration to mitigate some of the issues created while sharing roles, please fell free to take what you consider useful.
+ ***Final thought:*** This is not a "silver bullet" is just a proposed configuration to mitigate some of the issues created while sharing roles, please fell free to take what you consider useful.
 
 
 
