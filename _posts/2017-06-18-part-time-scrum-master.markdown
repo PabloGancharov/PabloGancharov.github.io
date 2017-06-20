@@ -13,7 +13,8 @@ tags:
 
 ## Why having part time Scrum Masters?
 
-Growing teams will reach the limit proposed by Scrum (maximum 9 members of the dev-team) so eventually the team should be splitted. That means that each team will require their own scrum master. 
+### Growing Teams
+Growing teams will reach the limit proposed by Scrum (maximum 9 members of the dev-team) so eventually the team should be split. That means that each team will require their own scrum master. 
 
 ![Part time scrum master](/files/part-time-scrum-master/scrum team.svg)
 
@@ -21,7 +22,10 @@ Growing teams will reach the limit proposed by Scrum (maximum 9 members of the d
 One solution can be just hiring a new full-time scrum master, 
 but often while attempting to train new scrum masters inside the team,  one approach is to assign the duties of the scrum master to one member.
 
-That could carry some issues that I'm going to analyze next, including one simple solution.
+### Partial Scrum Implementation
+Other possible scenario could be the case of a non Scrum team trying to implement Scrum without having one person assigned full-time to the role.
+
+These practices could carry some issues that I'm going to analyze next, including one simple solution.
 
 
 ## Conflict between previous role and new one
@@ -55,16 +59,15 @@ But as a scrum master, your role is much more silent, flying low, remembering to
     * Easy to switch "hats" (roles)
     * Easy to be the referee (mediate conflicts)
     * Easy to understand when to give opinion: a Scrum master should not talk about technical decisions, a developer should.
-    * Clean point of view
+    * Clean point of view.
     * Clear negotiation with the PO, impartial.
     * “Do through others”
 * Cons:
-    * Less time in general
-       * To learn
-       * To be a good scrum master
-       * To be a good developer
-       * The Scrum Master lose awareness of how the team is interacting, which makes coaching more difficult
-    * Tasks mechanization, as Scrum Master is possible that you will only have time to facilitate the meetings and nothing more :S
+    * Less time in general:
+       * To learn about scrum, as you may know reading, training and improving is a never ending task.
+       * Remember that belonging to two teams can double the time spent on meetings.
+   * The Scrum Master lose awareness of how the team is interacting, which makes coaching more difficult.
+    * Tasks mechanization, as Scrum Master is possible that you will only have time to facilitate the meetings and nothing more.
 
     
  ***Final thought:*** This is not a "silver bullet" is just a proposed configuration to mitigate some of the issues created while sharing roles, please fell free to take what you consider useful.
