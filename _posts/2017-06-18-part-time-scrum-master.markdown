@@ -11,9 +11,9 @@ tags:
 ---
 
 
-## Why having part time Scrum Masters?
+### Why having part time Scrum Masters?
 
-### Growing Teams
+#### Growing Teams
 Growing teams will reach the limit proposed by Scrum (maximum 9 members of the dev-team) so eventually the team should be split. That means that each team will require their own scrum master. 
 
 ![Part time scrum master](/files/part-time-scrum-master/scrum team.svg)
@@ -22,13 +22,13 @@ Growing teams will reach the limit proposed by Scrum (maximum 9 members of the d
 One solution can be just hiring a new full-time scrum master, 
 but often while attempting to train new scrum masters inside the team,  one approach is to assign the duties of the scrum master to one member.
 
-### Partial Scrum Implementation
+#### Partial Scrum Implementation
 Other possible scenario could be the case of a non Scrum team trying to implement Scrum without having one person assigned full-time to the role.
 
 These practices could carry some issues that I'm going to analyze next, including one simple solution.
 
 
-## Conflict between previous role and new one
+### Conflict between previous role and new one
 
 Scrum is easy to "understand" but hard to "master": 
 
@@ -43,18 +43,18 @@ That will require patience, listening, coaching and practice.
 
 When you discover something that needs improvement, one common mistake is to take shortcuts and "point out what is going wrong". Instead of doing that, we should allow the team to use the proper tools to analyze their work and perform the adjustments required.
 
-## Conflict of interests
+### Conflict of interests
 
 Being part of the dev-team and being Scrum Master of the Scrum Team at the same time will result in a huge effort. Mainly because you as a team member should work actively to complete the everyday work, proposing ideas, supporting colleagues and exposing what is being doing well and what is being doing wrong. 
 
 But as a scrum master, your role is much more silent, flying low, remembering to "see the wood instead of the tree", observing possible issues but giving the time to the team to auto solve them.
 
 
-## Proposed Solution
+### Proposed Solution
 
  If you are in a scrum dev team and you will start the journey to become a scrum master one healthy choice could be to start as a ***"Cross team Scrum Master"***. In that way we can separate the roles and be clear of the commitments with each team you are member.
 
-### Cross team Scrum Master
+#### Cross team Scrum Master
 * Pros:
     * Easy to switch "hats" (roles)
     * Easy to be the referee (mediate conflicts)
