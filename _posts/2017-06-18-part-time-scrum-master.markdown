@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Part time scrum master"
+title:  "On being an engineer & half time scrum master"
 date:   2017-06-18 18:26:00
 categories: Scrum
 tags:
