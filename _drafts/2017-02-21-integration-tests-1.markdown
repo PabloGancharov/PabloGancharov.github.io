@@ -22,7 +22,7 @@ This is a practical guide about how to build a tool for automatically test our A
 
 But aren't unit tests meant to do that? -> NO unit test are great to help building robust software, and they will check portions of the software isolated but not the whole thing.
 
-It's good to think about unit tests as a contract about how the tested unit should interact with the environment, and remember that we **mock** this environment. If your unit tests involve multiple parts of the system (Controllers, services, DB, logs), that means that you don't have unit test, just bad integration tests.
+It's good to think about unit tests as a contract about how the tested unit should interact with the environment, and remember that we **mock** this environment. If your unit tests involve multiple parts of the system (Controllers, services, DB, logs), that means that you don't have unit test, just uncanny integration tests.
 
 
 > More reading about Unit tests:
@@ -45,7 +45,7 @@ The "Target" should have a known state and it can be restored to that state each
 ### 3. Maintaining them should not be painful
 Maintaining them should have a cost/benefit balance that encourages the team to have them.
 
-### 4. The target should be as much as posible to production
+### 4. The target should be the closest as posible to production
 Having bugs that only happens in production environments and not in the testing replicas is the nightmare, because of that, the replicas should be as close to the production instance: Same OS, hardware, deployment process, load and a long etc.
 
 
