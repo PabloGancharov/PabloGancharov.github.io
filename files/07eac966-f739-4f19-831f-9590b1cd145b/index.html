@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Post-it Printer</title>
+  </head>
+  <body>
+    <form onSubmit="return send()">
+       Initials:<br> <input style="font-size: 3em; width: 2em; text-transform: uppercase;" id="name" type="text" name="name" maxlength="2" ><br><br>
+       Post-it:<br> <textarea  onkeyup="textCounter(this,'counter',54);" cols="14" rows="4" maxlength="59" id="text" name="text" style="font-size: 2em;" ></textarea> <br><input disabled  maxlength="3" size="3" value="59" id="counter">
+       <br><br>
+       <input type="submit" value="Submit">
+    </form>
+       
+  </body>
+
+
+</html>
+
+<script>
+function textCounter(field,field2,maxlimit)
+{
+ var countfield = document.getElementById(field2);
+ if ( field.value.length > maxlimit ) {
+  field.value = field.value.substring( 0, maxlimit );
+  return false;
+ } else {
+  countfield.value = maxlimit - field.value.length;
+ }
+}
+
+function send()
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "POST", 'https://api.particle.io/v1/devices/300037001447353236343033/print?access_token=d7c155027961122b5a7ae16065e5dec34befc53e', false );
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xmlHttp.setRequestHeader("Authorization", "Bearer d7c155027961122b5a7ae16065e5dec34befc53e");
+
+    var postText = "";
+    postText = document.getElementById("text").value + " - " + document.getElementById("name").value.toUpperCase();
+    xmlHttp.send( "args=" + postText );
+    document.getElementById("text").value = "";
+
+    return false; //xmlHttp.responseText;
+}
+</script>
