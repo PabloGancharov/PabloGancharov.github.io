@@ -30,7 +30,9 @@ Why a mate tutorial in english?
 3. Start the mate by pouring warm water (~ 60 °C)
 4. Wait for the yerba to expand
 5. Put the Bombilla
-6. Drink the first one
-7. Share
+6. Pour hot water
+7. Drink the first one until it's empty
+8. Pour more hot water
+9. Share and repeat
 
 
