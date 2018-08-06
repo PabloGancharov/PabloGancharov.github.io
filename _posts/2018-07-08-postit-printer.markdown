@@ -55,5 +55,5 @@ At that time the solution was simple: remote people sent their feedback by chat 
 ### Results:
 
 <video width="480" height="320" controls="controls">
-  <source src="files/2018-04-11 11.41.48.mp4" type="video/mp4">
+  <source src="/files/2018-04-11 11.41.48.mp4" type="video/mp4">
 </video>
