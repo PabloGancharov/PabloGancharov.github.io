@@ -1,5 +1,5 @@
 # Site settings
-title: PHP development notes
+title: Engineering cookbook 
 email: pablogancharov@gmail.com
 description: "Blog about programming, experiments and life."
 baseurl: "" # the subpath of your site, e.g. /blog/
