@@ -13,55 +13,70 @@ tags:
 
 Add changelog and EventStreams to a legacy APP using Kafka and kafka Connect
 
-Mission: 
-1) Emmit events everytime data changes in an existing application, without touching the original codebase.
-2) Use those events to create a live changelog of the app
+### Mission: 
 
-High level milestones:
+1. Emmit events everytime data changes in an existing application, without touching the original codebase.
+2. Use those events to create a live changelog of the app
 
-1) get a legacy app based on MYSQL database
+### High level milestones:
 
-2) Setup Kafka, Kafka connect and debezium
+1. Get a legacy app based on MYSQL database
+2. Setup Kafka, Kafka connect and debezium
+3. Configure Kafka Connect to detect changes on specific tables 
 
-3) Configure Kafka Connect to detect changes on specific tables 
+### Extra mile: 
 
-Extra goals: 
+1. Configure Kafka Connect to detect changes on aggregated data (Joined tables)
+2. Create a custom transformation to modify the generated output
 
-1) Configure Kafka Connect to detect changes on aggregated data (Joined tables)
+### Let´s start
 
-2) Create a custom transformation to modify the generated output
+#### 1) get a legacy app based on MYSQL database
 
+The application should follow some rules:
 
+* Have a MYSQL database
+* Tables should have an `last_updated_at` timestamp column or an incremental revision id that automatically updates on every row save
+* MYSQL binlog should be enabled
 
+if you don't have any app like that, this is as simple drupal example to load with `docker-compose`
 
-### Virtual retrospective tools:
+    # Use root/example as user/password credentials
+    version: '3.1'
+    
+    services:
+    
+      drupal:
+        image: drupal:8-apache
+        ports:
+          - 8080:80
+        volumes:
+          - /var/www/html/modules
+          - /var/www/html/profiles
+          - /var/www/html/themes
+          - /var/www/html/sites
+        restart: always
+    
+      db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MYSQL_DATABASE: test
+    
+    
+      adminer:
+        image: adminer
+        restart: always
+        ports:
+          - 8080:8080
+      
+      
 
+### Resources and sites I used to build this:
 
-### Technical Details:
-<!-- 	
-	Hardware:
-		Thermal printer (https://www.adafruit.com/product/597)
-		Particle Photon (https://store.particle.io/)
-
-	UI to send postits:
-		Simple HTML form -->
-
-### Code to flash the photon:
-<!-- 
-[https://gist.github.com/PabloGancharov/73c4729798d338b4507512e76f91d922.js](https://gist.github.com/PabloGancharov/73c4729798d338b4507512e76f91d922.js)
- -->
-
-### UI:
-<!-- 
-> Note: current UI implementation is just a proof of concept, never share your device id or security token publicly like this:
-
-[https://gist.github.com/PabloGancharov/5c919e2671119fe5fdba400eaf7fb135](https://gist.github.com/PabloGancharov/5c919e2671119fe5fdba400eaf7fb135)
- -->
-<!-- ![UI Example](/files/Screen Shot 2018-08-04 at 12.54.58.png) -->
-
-### Results:
-<!-- 
-<video width="480" height="320" controls="controls">
-  <source src="/files/2018-04-11 11.41.48.mp4" type="video/mp4">
-</video>
- -->
+* [https://rmoff.net/2018/03/24/streaming-data-from-mysql-into-kafka-with-kafka-connect-and-debezium/](https://rmoff.net/2018/03/24/streaming-data-from-mysql-into-kafka-with-kafka-connect-and-debezium/)
+* [https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-1/](https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-1/)
+* [https://debezium.io/docs/configuration/event-flattening/](https://debezium.io/docs/configuration/event-flattening/)
