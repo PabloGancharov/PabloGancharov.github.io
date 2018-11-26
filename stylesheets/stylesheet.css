@@ -452,7 +452,8 @@ header {
   padding-top: 40px;
   padding-bottom: 40px;
   font-family: "Whitney SSm A", "Whitney SSm B", "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
-  background:  url(../images/header-bg.jpg), url(../images/header-bg-lowres.jpg) 50% 50%;
+  background:  url(../images/header-bg.jpg), url(../images/header-bg-lowres.jpg);
+  background-position: center; /* Center the image */
   border-bottom: solid 1px #275da1;
   background-size: cover;
 }
