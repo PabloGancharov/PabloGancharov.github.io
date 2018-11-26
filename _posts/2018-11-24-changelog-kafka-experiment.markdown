@@ -123,18 +123,32 @@ For our purposes we will use the __Confluent Open Source__ Kafka quick start bun
 
 #### STEP #3 - Configure Kafka Connect to detect changes on specific tables 
 
-In this step we are going to use 4 terminal sessions: "zookeper", "kafka server", "Kafka avro console consumer", and the "confluent CLI" 
+Start Kafka: `./bin/confluent start`
 
-1. Start Zookepper: `./bin/zookeeper-server-start ./etc/kafka/zookeeper.properties`
-2. Then in another window, start Kafka server: `./bin/kafka-server-start ./etc/kafka/server.properties`
-3. And in a third one, start the Kafka avro console consumer: `./bin/kafka-console-consumer  --bootstrap-server localhost:9092 --topic test --from-beginning`
-4. In the 4th terminal let's start by testing kafka is working with a simple test: `./bin/kafka-console-producer --broker-list localhost:9092 --topic test` 
+![Confluent start](/files/kafka-changelog/confluent_start.png)
+
+__Testing producer/consumer w/ simple messages__
+
+let's use 2 teminal sessionsto teest kafka is working fine:
+
+In one terminal start the Kafka avro console consumer: `./bin/kafka-console-consumer  --bootstrap-server localhost:9092 --topic test --from-beginning`
+
+
+Then in another terminal, let's the producer: `./bin/kafka-console-producer --broker-list localhost:9092 --topic test` 
+
 At this point you can type anything and every time you hit enter the message will be sent to the `test` topic and will appear in the `console consumer`
+
 ![Testing Kafka producer and consumer are working](/files/kafka-changelog/test_kafka.gif)
 
-Now stop the producer (Ctrl + C) and create a new file `/tmp/kafka-connect-jdbc-source.json`
+Stop the  producer hit Ctrl + C.
 
-This file is going to be the configuration for kafka-connect.
+__Configure Kafka connect to listen database changes__
+
+
+First create a new configuration file `/tmp/kafka-connect-jdbc-source.json`
+with the conection details and the whitelist of tables to listen.
+
+Despite kafka connect uses binlog to look for changes, mysql or kafka eventually can get out of sync, so  it needs a way to reconciliate the state and understand if a desired log-line was already seen and proccessed, so it will be necessariy to define an "observation strategy" it can be "timestamp" based or by an "monotonous incremental id". 
 
 Here is my version adapted from [https://gist.github.com/rmoff/85b6f26a592203e70b9366999680ac05](https://gist.github.com/rmoff/85b6f26a592203e70b9366999680ac05) to make it fit with our example drupal database:
 
@@ -142,17 +156,31 @@ Here is my version adapted from [https://gist.github.com/rmoff/85b6f26a592203e70
 
 As you can see I white-listed the table `node__body` and I configured the log observation strategy as `incrementing` because Drupal uses integers to represent that a row has changed. Other modes are `timestamp` or `bulk` more on that on [https://docs.confluent.io/current/connect/kafka-connect-jdbc/source-connector/source_config_options.html#mode](https://docs.confluent.io/current/connect/kafka-connect-jdbc/source-connector/source_config_options.html#mode)
 
-OK, so next we will load that configuration into Connect:
 
-	# Load configuration
- 	./bin/confluent load jdbc_source_mysql_foobar_01 -d /tmp/kafka-connect-jdbc-source.json
+	
 
-	# Other useful commands are: 
-	./bin/confluent status
-	./bin/confluent unload
-	./bin/confluent configure
+and load that configuration into Connect:
+
+	./bin/confluent load jdbc_source_mysql_foobar_01 -d /tmp/kafka-connect-jdbc-source.json
+
+Other useful commands are: 
+
+	# get the status
+	./bin/confluent status jdbc_source_mysql_foobar_01
+	
+	# unload config
+	./bin/confluent unload jdbc_source_mysql_foobar_01
+
+	# relaod config
+	./bin/confluent config jdbc_source_mysql_foobar_01 -d /tmp/kafka-connect-jdbc-source.json
+	
+	
+Let's see the data stream:
+	
+	# Please note I'm using jq tool to format json output :
+	./bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic mysql-node__body --from-beginning | jq "."	
 	 
-
+![Testing Kafka connect](/files/kafka-changelog/test_kafa_connect.gif)
 
 
 ### Resources and sites I used to build this:
