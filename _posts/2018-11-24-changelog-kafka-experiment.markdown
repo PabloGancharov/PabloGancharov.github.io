@@ -22,7 +22,6 @@ Add changelog and EventStreams to a legacy APP using Kafka and kafka Connect
 
 1. Get a legacy app based on MYSQL database
 2. Setup Kafka, Kafka connect and debezium
-3. Configure Kafka Connect to detect changes on specific tables 
 
 ### Extra mile: 
 
@@ -111,21 +110,20 @@ _Once finished we will get this:_
 
 This is a good moment to get up  :raised_hands:, stretch your legs :walking:, and grab another cup of :coffee: because we're just about to start the fun part!  
 
-#### STEP #2 - Setup Kafka, Kafka connect and debezium
+#### STEP #2 - Setup Kafka and debezium
 
 For our purposes we will use the __Confluent Open Source__ Kafka quick start bundle  [https://www.confluent.io/download/](https://www.confluent.io/download/)
 
 1. Download and unzip the confluent package (in my case `confluent-oss-5.0.1-2.11.zip`)
-2. Add mysql support by downloading jdbc driver for [mysql](https://dev.mysql.com/downloads/connector/j/5.1.html) `mysql-connector-java-5.1.47` and adding it to `share/java/kafka-connect-jdbc`
-3. Add Debezium plugin (this will be usefull to also apply changes to the streamed data). Download the latest from [https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/](https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/) (in my case `debezium-connector-mysql-0.9.0.Beta1-plugin.tar.gz`) unzip it and move the extracted folder to `share/java/`
+2. Add Debezium plugin (this will be usefull to also apply changes to the streamed data). Download the latest from [https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/](https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/) (in my case `debezium-connector-mysql-0.9.0.Beta1-plugin.tar.gz`) unzip it and move the extracted folder to `share/java/`
 
 
-
-#### STEP #3 - Configure Kafka Connect to detect changes on specific tables 
 
 Start Kafka: `./bin/confluent start`
 
 ![Confluent start](/files/kafka-changelog/confluent_start.png)
+
+Also you can access [http://localhost:8083/](http://localhost:8083/) to check the rest API is work.ing
 
 __Testing producer/consumer w/ simple messages__
 
@@ -145,42 +143,57 @@ Stop the  producer hit Ctrl + C.
 __Configure Kafka connect to listen database changes__
 
 
-First create a new configuration file `/tmp/kafka-connect-jdbc-source.json`
+First create a new configuration file `/tmp/debezium-source.json`
 with the conection details and the whitelist of tables to listen.
 
-Despite kafka connect uses binlog to look for changes, mysql or kafka eventually can get out of sync, so  it needs a way to reconciliate the state and understand if a desired log-line was already seen and proccessed, so it will be necessariy to define an "observation strategy" it can be "timestamp" based or by an "monotonous incremental id". 
 
-Here is my version adapted from [https://gist.github.com/rmoff/85b6f26a592203e70b9366999680ac05](https://gist.github.com/rmoff/85b6f26a592203e70b9366999680ac05) to make it fit with our example drupal database:
-
-<script src="https://gist.github.com/PabloGancharov/4705322cb5b538cfbfa8cf493ed3ecac.js"></script>
-
-As you can see I white-listed the table `node__body` and I configured the log observation strategy as `incrementing` because Drupal uses integers to represent that a row has changed. Other modes are `timestamp` or `bulk` more on that on [https://docs.confluent.io/current/connect/kafka-connect-jdbc/source-connector/source_config_options.html#mode](https://docs.confluent.io/current/connect/kafka-connect-jdbc/source-connector/source_config_options.html#mode)
-
-
+	
+	{
+	  "name": "debezium-source",
+	  "config": {
+	    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+	    "tasks.max": "1",
+	    "database.hostname": "127.0.0.1",
+	    "database.port": "23306",
+	    "database.user": "root",
+	    "database.password": "root",
+	    "database.server.id": "184054",
+	    "database.server.name": "changelogExample",
+	    "database.history.kafka.bootstrap.servers": "localhost:9092",
+	    "database.history.kafka.topic": "dbhistory.drupal_db"
+	  }
+	}
 	
 
 and load that configuration into Connect:
 
-	./bin/confluent load jdbc_source_mysql_foobar_01 -d /tmp/kafka-connect-jdbc-source.json
+	./bin/confluent load debezium-source -d /tmp/debezium-source.json
 
 Other useful commands are: 
 
 	# get the status
-	./bin/confluent status jdbc_source_mysql_foobar_01
+	./bin/confluent status debezium-source
 	
 	# unload config
-	./bin/confluent unload jdbc_source_mysql_foobar_01
+	./bin/confluent unload debezium-source
 
 	# relaod config
-	./bin/confluent config jdbc_source_mysql_foobar_01 -d /tmp/kafka-connect-jdbc-source.json
+	./bin/confluent config debezium-source -d /tmp/debezium-source.json
 	
 	
-Let's see the data stream:
+Let's see the topics list:
 	
+	./bin/kafka-topics --zookeeper localhost:2181 --list
+	
+And now check the changelog of one of the tables:
+
 	# Please note I'm using jq tool to format json output :
-	./bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic mysql-node__body --from-beginning | jq "."	
+	./bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic changelogExample.drupal_db.node__body --from-beginning | jq "."	
 	 
 ![Testing Kafka connect](/files/kafka-changelog/test_kafa_connect.gif)
+
+
+
 
 
 ### Resources and sites I used to build this:
@@ -190,3 +203,4 @@ Let's see the data stream:
 * [https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-1/](https://www.confluent.io/blog/simplest-useful-kafka-connect-data-pipeline-world-thereabouts-part-1/)
 * [https://debezium.io/docs/configuration/event-flattening/](https://debezium.io/docs/configuration/event-flattening/)
 * [https://kafka.apache.org/quickstart](https://kafka.apache.org/quickstart)
+* [https://iamninad.com/how-debezium-kafka-stream-can-help-you-write-cdc/](https://iamninad.com/how-debezium-kafka-stream-can-help-you-write-cdc/)
