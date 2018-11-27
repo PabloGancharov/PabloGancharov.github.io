@@ -36,10 +36,9 @@ Add changelog and EventStreams to a legacy APP using Kafka and kafka Connect
 The application should follow some rules:
 
 * Have a MYSQL database
-* Tables should have an `last_updated_at` timestamp column or an incremental revision id that automatically updates on every row save
 * MYSQL binlog should be enabled
 
-if you don't have any app like that, this is as simple drupal example to load with `docker-compose`
+If you don't have any app like that, this is as simple drupal example to load with `docker-compose`
 
 a. create a file named `docker-compose.yml` with the following content inside:
 
@@ -123,16 +122,16 @@ Start Kafka: `./bin/confluent start`
 
 ![Confluent start](/files/kafka-changelog/confluent_start.png)
 
-Also you can access [http://localhost:8083/](http://localhost:8083/) to check the rest API is work.ing
+Also you can access [http://localhost:8083/](http://localhost:8083/) to check the rest API is working.
 
 __Testing producer/consumer w/ simple messages__
 
-let's use 2 teminal sessionsto teest kafka is working fine:
+let's use 2 teminal sessions to teest kafka is working fine:
 
 In one terminal start the Kafka avro console consumer: `./bin/kafka-console-consumer  --bootstrap-server localhost:9092 --topic test --from-beginning`
 
 
-Then in another terminal, let's the producer: `./bin/kafka-console-producer --broker-list localhost:9092 --topic test` 
+Then in another terminal, let's start the producer: `./bin/kafka-console-producer --broker-list localhost:9092 --topic test` 
 
 At this point you can type anything and every time you hit enter the message will be sent to the `test` topic and will appear in the `console consumer`
 
