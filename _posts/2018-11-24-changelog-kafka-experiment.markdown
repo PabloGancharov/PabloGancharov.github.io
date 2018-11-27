@@ -182,7 +182,7 @@ Let's see the topics list:
 	./bin/kafka-topics --zookeeper localhost:2181 --list
 	
 <details>
-  <summary>`Click to see results`</summary>
+  <summary>Click to see results</summary>
   
   
 	__confluent.support.metrics
