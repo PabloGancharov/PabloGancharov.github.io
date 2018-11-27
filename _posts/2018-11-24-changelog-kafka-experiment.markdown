@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Add changelog and EventStreams to a legacy APP using Kafka and kafka Connect"
+title:  "Adding changelog a legacy mysql based aplication using Kafka and Debezium"
 date:   2018-11-24 00:00:00
-categories: Kafka Changelog Mysql
+categories: Kafka Changelog Mysql Debezium
 tags:
  - Kafka
  - Changelog
@@ -20,13 +20,13 @@ Add changelog and EventStreams to a legacy APP using Kafka and kafka Connect
 
 ### High level milestones:
 
-1. Get a legacy app based on MYSQL database
+1. Get a legacy app running (MYSQL based)
 2. Setup Kafka, Kafka connect and debezium
 
 ### Extra mile: 
 
 1. Configure Kafka Connect to detect changes on aggregated data (Joined tables)
-2. Create a custom transformation to modify the generated output
+2. Display only the delta changes
 
 ### Let´s start
 
@@ -115,7 +115,7 @@ This is a good moment to get up  :raised_hands:, stretch your legs :walking:, an
 For our purposes we will use the __Confluent Open Source__ Kafka quick start bundle  [https://www.confluent.io/download/](https://www.confluent.io/download/)
 
 1. Download and unzip the confluent package (in my case `confluent-oss-5.0.1-2.11.zip`)
-2. Add Debezium plugin (this will be usefull to also apply changes to the streamed data). Download the latest from [https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/](https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/) (in my case `debezium-connector-mysql-0.9.0.Beta1-plugin.tar.gz`) unzip it and move the extracted folder to `share/java/`
+2. Add Debezium plugin (this will be usefull to also apply changes to the streamed data). Download the latest from [https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/](https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/) (in my case `debezium-connector-mysql-0.9.0.Alpha2-plugin.tar.gz`) unzip it and move the extracted folder to `share/java/`
 
 
 
@@ -140,7 +140,7 @@ At this point you can type anything and every time you hit enter the message wil
 
 Stop the  producer hit Ctrl + C.
 
-__Configure Kafka connect to listen database changes__
+__Configure Debezium to listen database changes__
 
 
 First create a new configuration file `/tmp/debezium-source.json`
@@ -153,14 +153,16 @@ with the conection details and the whitelist of tables to listen.
 	  "config": {
 	    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
 	    "tasks.max": "1",
-	    "database.hostname": "127.0.0.1",
+	    "database.hostname": "localhost",
 	    "database.port": "23306",
 	    "database.user": "root",
 	    "database.password": "root",
 	    "database.server.id": "184054",
+	    "database.dbname" : "drupal_db",
 	    "database.server.name": "changelogExample",
 	    "database.history.kafka.bootstrap.servers": "localhost:9092",
-	    "database.history.kafka.topic": "dbhistory.drupal_db"
+	    "database.history.kafka.topic": "dbhistory.drupal_db",
+	    "snapshot.mode" : "when_needed"
 	  }
 	}
 	
@@ -190,7 +192,7 @@ And now check the changelog of one of the tables:
 	# Please note I'm using jq tool to format json output :
 	./bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic changelogExample.drupal_db.node__body --from-beginning | jq "."	
 	 
-![Testing Kafka connect](/files/kafka-changelog/test_kafa_connect.gif)
+![Testing Kafka connect](/files/kafka-changelog/debezium.gif)
 
 
 
