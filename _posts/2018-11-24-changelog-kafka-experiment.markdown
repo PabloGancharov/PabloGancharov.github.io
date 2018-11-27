@@ -181,6 +181,105 @@ Let's see the topics list:
 	
 	./bin/kafka-topics --zookeeper localhost:2181 --list
 	
+<details>
+  <summary>`Click to see results`</summary>
+  
+  
+	__confluent.support.metrics
+	__consumer_offsets
+	_confluent-ksql-default__command_topic
+	_schemas
+	changelogExample
+	changelogExample.drupal_db.block_content
+	changelogExample.drupal_db.block_content__field_banner_image
+	changelogExample.drupal_db.block_content__field_content_link
+	changelogExample.drupal_db.block_content__field_copyright
+	changelogExample.drupal_db.block_content__field_disclaimer
+	changelogExample.drupal_db.block_content__field_promo_image
+	changelogExample.drupal_db.block_content__field_summary
+	changelogExample.drupal_db.block_content__field_title
+	changelogExample.drupal_db.block_content_field_data
+	changelogExample.drupal_db.block_content_field_revision
+	changelogExample.drupal_db.block_content_revision
+	changelogExample.drupal_db.block_content_revision__field_banner_image
+	changelogExample.drupal_db.block_content_revision__field_content_link
+	changelogExample.drupal_db.block_content_revision__field_copyright
+	changelogExample.drupal_db.block_content_revision__field_disclaimer
+	changelogExample.drupal_db.block_content_revision__field_promo_image
+	changelogExample.drupal_db.block_content_revision__field_summary
+	changelogExample.drupal_db.block_content_revision__field_title
+	changelogExample.drupal_db.cache_bootstrap
+	changelogExample.drupal_db.cache_config
+	changelogExample.drupal_db.cache_container
+	changelogExample.drupal_db.cache_data
+	changelogExample.drupal_db.cache_default
+	changelogExample.drupal_db.cache_discovery
+	changelogExample.drupal_db.cache_entity
+	changelogExample.drupal_db.cache_menu
+	changelogExample.drupal_db.cache_render
+	changelogExample.drupal_db.cachetags
+	changelogExample.drupal_db.config
+	changelogExample.drupal_db.content_moderation_state
+	changelogExample.drupal_db.content_moderation_state_field_data
+	changelogExample.drupal_db.content_moderation_state_field_revision
+	changelogExample.drupal_db.content_moderation_state_revision
+	changelogExample.drupal_db.file_managed
+	changelogExample.drupal_db.file_usage
+	changelogExample.drupal_db.history
+	changelogExample.drupal_db.key_value
+	changelogExample.drupal_db.key_value_expire
+	changelogExample.drupal_db.menu_tree
+	changelogExample.drupal_db.node
+	changelogExample.drupal_db.node__body
+	changelogExample.drupal_db.node__field_cooking_time
+	changelogExample.drupal_db.node__field_difficulty
+	changelogExample.drupal_db.node__field_image
+	changelogExample.drupal_db.node__field_ingredients
+	changelogExample.drupal_db.node__field_number_of_servings
+	changelogExample.drupal_db.node__field_preparation_time
+	changelogExample.drupal_db.node__field_recipe_category
+	changelogExample.drupal_db.node__field_recipe_instruction
+	changelogExample.drupal_db.node__field_summary
+	changelogExample.drupal_db.node__field_tags
+	changelogExample.drupal_db.node_access
+	changelogExample.drupal_db.node_field_data
+	changelogExample.drupal_db.node_field_revision
+	changelogExample.drupal_db.node_revision
+	changelogExample.drupal_db.node_revision__body
+	changelogExample.drupal_db.node_revision__field_cooking_time
+	changelogExample.drupal_db.node_revision__field_difficulty
+	changelogExample.drupal_db.node_revision__field_image
+	changelogExample.drupal_db.node_revision__field_ingredients
+	changelogExample.drupal_db.node_revision__field_number_of_servings
+	changelogExample.drupal_db.node_revision__field_preparation_time
+	changelogExample.drupal_db.node_revision__field_recipe_category
+	changelogExample.drupal_db.node_revision__field_recipe_instruction
+	changelogExample.drupal_db.node_revision__field_summary
+	changelogExample.drupal_db.node_revision__field_tags
+	changelogExample.drupal_db.router
+	changelogExample.drupal_db.search_dataset
+	changelogExample.drupal_db.search_index
+	changelogExample.drupal_db.search_total
+	changelogExample.drupal_db.semaphore
+	changelogExample.drupal_db.sequences
+	changelogExample.drupal_db.sessions
+	changelogExample.drupal_db.shortcut
+	changelogExample.drupal_db.shortcut_field_data
+	changelogExample.drupal_db.taxonomy_index
+	changelogExample.drupal_db.taxonomy_term__parent
+	changelogExample.drupal_db.taxonomy_term_data
+	changelogExample.drupal_db.taxonomy_term_field_data
+	changelogExample.drupal_db.url_alias
+	changelogExample.drupal_db.user__roles
+	changelogExample.drupal_db.users
+	changelogExample.drupal_db.users_field_data
+	changelogExample.drupal_db.watchdog
+	connect-configs
+	connect-offsets
+	connect-statuses
+	dbhistory.drupal_db
+</details>
+
 And now check the changelog of one of the tables:
 
 	# Please note I'm using jq tool to format json output :
@@ -189,8 +288,18 @@ And now check the changelog of one of the tables:
 ![Testing Kafka connect](/files/kafka-changelog/debezium.gif)
 
 
+### Final Notes
 
+Despite this example is a proof of concept about relational databases and changelogs, I want to highlight the power and flexibility of Kafka and Debezium. 
 
+Other uses of events generated by Debezium: 
+
+(extracted from [https://debezium.io/docs/faq/#what_are_some_uses_of_debezium](https://debezium.io/docs/faq/#what_are_some_uses_of_debezium))
+
+* Update search indexes with the data.
+* Update a derived data store with the same information or with information computed from the changing data, such as with Command Query Responsibility Separation __(CQRS)__.
+* Send a push notification to one or more mobile devices.
+* They might aggregate the changes and produce a stream of patches for entities.
 
 ### Resources and sites I used to build this:
 
