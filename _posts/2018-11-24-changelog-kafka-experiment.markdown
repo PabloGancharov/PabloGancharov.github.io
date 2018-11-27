@@ -7,7 +7,6 @@ tags:
  - Kafka
  - Changelog
  - Mysql
- - draft
 ---
 
 
@@ -23,10 +22,6 @@ Add changelog and EventStreams to a legacy APP using Kafka and Debezium
 1. Get a legacy app running (MYSQL based)
 2. Setup Kafka, Kafka connect and debezium
 
-### Extra mile: 
-
-1. Configure Kafka Connect to detect changes on aggregated data (Joined tables)
-2. Display only the delta changes
 
 ### Let´s start
 
