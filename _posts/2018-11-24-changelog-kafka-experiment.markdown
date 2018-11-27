@@ -11,7 +11,7 @@ tags:
 ---
 
 
-Add changelog and EventStreams to a legacy APP using Kafka and kafka Connect
+Add changelog and EventStreams to a legacy APP using Kafka and Debezium
 
 ### Mission: 
 
