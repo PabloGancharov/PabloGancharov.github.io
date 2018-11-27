@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Adding changelog to a legacy mysql based aplication using Kafka and Debezium"
+title:  "Adding change-log to a legacy mysql based application using Kafka and Debezium"
 date:   2018-11-24 00:00:00
 categories: Kafka Changelog Mysql Debezium
 tags:
@@ -10,7 +10,7 @@ tags:
 ---
 
 
-Add changelog and EventStreams to a legacy APP using Kafka and Debezium
+Adding change-log to a legacy APP using Kafka and Debezium (without modifying the codebase)
 
 ### Mission: 
 
@@ -20,7 +20,7 @@ Add changelog and EventStreams to a legacy APP using Kafka and Debezium
 ### High level milestones:
 
 1. Get a legacy app running (MYSQL based)
-2. Setup Kafka, Kafka connect and debezium
+2. Setup Kafka and Debezium
 
 
 ### Let´s start
