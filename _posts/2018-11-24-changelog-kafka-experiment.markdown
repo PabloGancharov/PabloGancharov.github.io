@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Adding changelog a legacy mysql based aplication using Kafka and Debezium"
+title:  "Adding changelog to a legacy mysql based aplication using Kafka and Debezium"
 date:   2018-11-24 00:00:00
 categories: Kafka Changelog Mysql Debezium
 tags:
