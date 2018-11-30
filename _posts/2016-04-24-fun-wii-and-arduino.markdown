@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Adapting PloyStation 2 controller to Wii using Arduino"
+title:  "Adapting PlayStation 2 controller to Wii using Arduino"
 date:   2016-04-24 15:40:56
 categories: Arduino
 tags:
