@@ -285,7 +285,8 @@ And now check the changelog of one of the tables:
 	# Please note I'm using jq tool to format json output :
 	./bin/kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic changelogExample.drupal_db.node__body --from-beginning | jq "."	
 	 
-![Testing Kafka connect](/files/kafka-changelog/debezium.gif)
+[![Testing Kafka connect](/files/kafka-changelog/debezium.gif)](/files/kafka-changelog/debezium.gif){:target="_blank"}
+
 
 
 ### Final Notes
